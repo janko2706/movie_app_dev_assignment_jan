@@ -40,7 +40,6 @@ const Discovery: React.FC<Props> = ({DiscoveryState, isLoadingDiscovery, isError
   const filterMovies: Movie[] = movies.filter((value, index, self) => index === self.findIndex((t) => (
     t.id === value.id
   )));
-  setAllMovies(filterMovies);
 
   if (isErrorDiscovery) return <div>Something went wrong ...</div>;
 
