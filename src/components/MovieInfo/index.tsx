@@ -31,9 +31,9 @@ const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, AllFavourite
     <Wrapper backdrop={movie.backdrop_path}>
       <button className="manageFavorites" onClick={() => handleFavouritesClick(movie)}>
         {movieIsFavourite ? 
-          <i className='bi bi-heart-fill' style={{color: 'red'}} ></i> 
+        <i className='bi bi-heart' style={{color: 'white'}}></i>
         : 
-          <i className='bi bi-heart' style={{color: 'white'}}></i>
+        <i className='bi bi-heart-fill' style={{color: 'red'}} ></i> 
         }
       </button>
       <Content>
