@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
