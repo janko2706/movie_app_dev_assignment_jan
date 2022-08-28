@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 //config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //components
@@ -36,25 +36,39 @@ const Discovery: React.FC<Props> = ({DiscoveryState, isLoadingDiscovery, isError
   //for filter
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
   const [filterType, setFilterType] = useState<string>('');
-  
-
-  useEffect(() => {
-    const movies: Movie[] = [...DiscoveryState.action,...DiscoveryState.adventure, ...DiscoveryState.drama, ...DiscoveryState.horror, ...DiscoveryState.comedies, ...DiscoveryState.animated, ...DiscoveryState.family];
-    const filterMovies: Movie[] = movies.filter((value, index, self) => index === self.findIndex((t) => (
-      t.id === value.id
-    )));
-    setAllMovies(filterMovies);
-  }, [DiscoveryState])
+  const movies: Movie[] = [...DiscoveryState.action,...DiscoveryState.adventure, ...DiscoveryState.drama, ...DiscoveryState.horror, ...DiscoveryState.comedies, ...DiscoveryState.animated, ...DiscoveryState.family];
+  const filterMovies: Movie[] = movies.filter((value, index, self) => index === self.findIndex((t) => (
+    t.id === value.id
+  )));
+  setAllMovies(filterMovies);
 
   if (isErrorDiscovery) return <div>Something went wrong ...</div>;
 
 
   function changeSort(sortName: string){
     setFilterType(sortName);
-    switch (filterType) {
-      case 'Name Ascending':
-        const sortMovies: Movie[] = allMovies.sort((a, b) => a.original_title.localeCompare(b.original_title));
+    switch (sortName) {
+      case 'Title Ascending':
+        const sortMovies: Movie[] = filterMovies.sort((a, b) => a.original_title.localeCompare(b.original_title));
         setAllMovies(sortMovies);
+        break;
+      case 'Highest voted':
+        const sortMovies2: Movie[] = filterMovies.sort((a, b) => b.vote_average-a.vote_average);
+        setAllMovies(sortMovies2);
+        break;
+      case 'Popular this year':
+        const filterYear = filterMovies.filter(a => {
+          let relese_date: Date = new Date(a.release_date);
+          let now_date: Date = new Date();
+
+          if(relese_date.getFullYear() === now_date.getFullYear()){
+            return true;
+          }else{
+            return false;
+          }
+        })
+        const sortMovies3: Movie[] = filterYear.sort((a, b) => b.popularity-a.popularity);
+        setAllMovies(sortMovies3);
         break;
     
       default:
@@ -74,9 +88,12 @@ const Discovery: React.FC<Props> = ({DiscoveryState, isLoadingDiscovery, isError
       :
         <Spinner/>
       }
-      <div className='d-flex justify-content-end m-3'>
-        <button className='btn btn-primary' onClick={() => changeSort('Name Ascending')}>By title ascending</button>
-        <button className='btn btn-primary' onClick={() => changeSort('')}>Remove filters</button>
+      <div className='fluid-container'>
+        <i className="bi bi-funnel" style={{fontSize: '2em', color: 'white'}}></i>
+        <button className='btn btn-primary m-2' onClick={() => changeSort('Title Ascending')}>By title ascending</button>
+        <button className='btn btn-primary m-2' onClick={() => changeSort('Highest voted')}>Highest voted</button>
+        <button className='btn btn-primary m-2' onClick={() => changeSort('Popular this year')}>Popular this year</button>
+        <button className='btn btn-danger m-2' onClick={() => changeSort('')}>Remove filters</button>
       </div>
       {filterType && filterType !== '' ?
       allMovies && 

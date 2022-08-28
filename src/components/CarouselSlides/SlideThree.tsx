@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import favouriteMoviePosterCarousel from '../../images/favouriteMoviePosterCarousel.jpg';
 
 
@@ -14,7 +13,6 @@ const SlideThree = () => (
                     A list of all your favourite movies.
                 </p>
             </div>
-            <Link to={'/favourites'} className="btn btn-primary">My favourites</Link>
         </div>
         <img src={favouriteMoviePosterCarousel} alt="carousel slide one" />
     </div>

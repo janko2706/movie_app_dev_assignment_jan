@@ -67,22 +67,22 @@ const Header: React.FC<Props> = ({ favourites }) => {
         </Link>
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item active">
+        <li className="nav-item btn">
           <Link className="nav-link" to={'/'}>Home</Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item btn">
         <Link className="nav-link" to={'/discovery'}>Discover</Link>
         </li>
         <li className="nav-item">
-        <Dropdown className="nav-link" style={{background: 'transparent !important'}}>
-          <Dropdown.Toggle id="dropdown-basic">
-            Favorites
+        <Dropdown className="nav-link" >
+          <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary" style={{background: 'transparent !important'}}>
+            My Favorites
           </Dropdown.Toggle>
 
           <Dropdown.Menu  className="overflow-auto" style={{maxHeight: '100px'}}>
-            {favourites && favourites.map((movie) => (
+            {favourites && favourites.map((movie, movieIdx) => (
               <Dropdown.Item  key={movie.id}>
-                <Link to={`/${movie.id}`} style={{textDecoration: 'none'}}>{movie.title}</Link>  
+                <Link to={`/${movie.id}`} style={{textDecoration: 'none'}} key={movieIdx}>{movie.title}</Link>  
               </Dropdown.Item>
 
             ))}
@@ -94,7 +94,7 @@ const Header: React.FC<Props> = ({ favourites }) => {
           <SearchBar setSearchTerm={setSearchTerm} />
           <SearchModal>
           {searchTerm !== "" && state.results.map(movie => (
-              <Link to={`/${movie.id}`} style={{textDecoration: 'none'}}  className="movieSearchLink">{movie.title}</Link>
+              <Link to={`/${movie.id}`} style={{textDecoration: 'none'}}  className="movieSearchLink" key={movie.id}>{movie.title}</Link>
               ))}
           </SearchModal>
       </div>

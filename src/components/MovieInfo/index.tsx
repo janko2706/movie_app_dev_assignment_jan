@@ -18,12 +18,9 @@ type Props = {
 }
 
 const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, AllFavouriteMovies }) => {
-  console.log(AllFavouriteMovies);
   movie.isFavourite = false;
-  console.log(movie.id);
 
   AllFavouriteMovies.forEach((item) => {
-    console.log(item.id);
     if(item.id === movie.id){
       movie.isFavourite = true;
     }
