@@ -34,17 +34,11 @@ const Movie: React.FC<Props> = ({ favouriteMovies, handleFavouritesClick }) => {
       <div className='text-danger'>Something went wrong, please try again.</div>
     )
   }
-  if(favouriteMovies.includes(state.movie)){
-    state.movie.isFavourite = true;
-  }else{
-    state.movie.isFavourite = false;
-  }
-
 
   return (
     <>
       <BreadCrumb movieTitle={state.movie.original_title} />
-      <MovieInfo movie={state.movie} handleFavouritesClick={()=>handleFavouritesClick(state.movie)}/>
+      <MovieInfo movie={state.movie} handleFavouritesClick={()=>handleFavouritesClick(state.movie)} favouriteMovies={favouriteMovies}/>
       <MovieInfoBar
         time={state.movie.runtime}
         budget={state.movie.budget}

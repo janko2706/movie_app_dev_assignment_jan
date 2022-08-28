@@ -41,12 +41,16 @@ const App: React.FC = () => {
         state.results.forEach(item => {
           if(item.id === movie.id){
             item.isFavourite = true;
+          }else{
+            item.isFavourite = false;
           }
         })
         Object.entries(DiscoveryState).forEach(row => {
           row[1].forEach(item => {
             if(item.id === movie.id){
               item.isFavourite = true;
+            }else{
+              item.isFavourite = false;
             }
           })
         })

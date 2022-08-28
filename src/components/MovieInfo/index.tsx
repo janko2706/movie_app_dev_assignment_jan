@@ -12,46 +12,55 @@ import { Movie } from '../../API';
 
 type Props = {
   movie: Movie,
-  handleFavouritesClick: (movie: Movie) => void;
+  handleFavouritesClick: (movie: Movie) => void,
+  favouriteMovies: Movie[],
 
 }
 
-const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick }) => (
-  <Wrapper backdrop={movie.backdrop_path}>
-    <button className="manageFavorites" onClick={() => handleFavouritesClick(movie)}>
-      {movie.isFavourite ? 
-        <i className='bi bi-heart-fill' style={{color: 'red'}} ></i> 
-      : 
-        <i className='bi bi-heart' style={{color: 'white'}}></i>
-      }
-    </button>
-    <Content>
-      <Thumb
-        image={
-          movie.poster_path
-          ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-          : NoImage
+const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, favouriteMovies }) => {
+
+  if(favouriteMovies.includes(movie)){
+    movie.isFavourite = true;
+  }else{
+    movie.isFavourite = false;
+  }
+  return(
+    <Wrapper backdrop={movie.backdrop_path}>
+      <button className="manageFavorites" onClick={() => handleFavouritesClick(movie)}>
+        {movie.isFavourite ? 
+          <i className='bi bi-heart-fill' style={{color: 'red'}} ></i> 
+        : 
+          <i className='bi bi-heart' style={{color: 'white'}}></i>
         }
-        clickable={false}
-        isFavourite={movie.isFavourite}
-        handleFavouritesClick={() => handleFavouritesClick(movie)}
+      </button>
+      <Content>
+        <Thumb
+          image={
+            movie.poster_path
+            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+            : NoImage
+          }
+          clickable={false}
+          isFavourite={movie.isFavourite}
+          handleFavouritesClick={() => handleFavouritesClick(movie)}
 
-      />
-      <Text>
-        <h1>{movie.title}</h1>
-        <h3>PLOT</h3>
-        <p>{movie.overview}</p>
+        />
+        <Text>
+          <h1>{movie.title}</h1>
+          <h3>PLOT</h3>
+          <p>{movie.overview}</p>
 
-        <div className='rating-directors'>
-          <div>
-            <h3>RATING</h3>
-            <div className='score'>{movie.vote_average}</div>
+          <div className='rating-directors'>
+            <div>
+              <h3>RATING</h3>
+              <div className='score'>{movie.vote_average}</div>
+            </div>
           </div>
-        </div>
 
-      </Text>
-    </Content>
-  </Wrapper>
-);
+        </Text>
+      </Content>
+    </Wrapper>
+  )
+};
 
 export default MovieInfo;
