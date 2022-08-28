@@ -32,7 +32,6 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
             value={state}
           />
           <i className="bi bi-search my-2 my-sm-0" style={{fontSize: 30, color: 'white'}}></i>
-          {/* <img src={searchIcon} alt='search-icon' width={30} color={'green'}/> */}
     </div>
   );
 };
