@@ -38,7 +38,7 @@ const Movie: React.FC<Props> = ({ favouriteMovies, handleFavouritesClick }) => {
   return (
     <>
       <BreadCrumb movieTitle={state.movie.original_title} />
-      <MovieInfo movie={state.movie} handleFavouritesClick={()=>handleFavouritesClick(state.movie)} favouriteMovies={favouriteMovies}/>
+      <MovieInfo movie={state.movie} handleFavouritesClick={()=>handleFavouritesClick(state.movie)} AllFavouriteMovies={favouriteMovies}/>
       <MovieInfoBar
         time={state.movie.runtime}
         budget={state.movie.budget}

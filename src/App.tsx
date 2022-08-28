@@ -84,7 +84,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path='/' element={<Home state={state} isLoading={isLoading} isError={isError} setIsLoadingMore={setIsLoadingMore} handleFavouritesClick={addFavouriteMovie}/>}/>
         <Route path='/discovery' element={<Discovery DiscoveryState={DiscoveryState} isLoadingDiscovery={isLoadingDiscovery} isErrorDiscovery={isErrorDiscovery} handleFavouritesClick={addFavouriteMovie}/>}/>
-        <Route path='/:movieId' element={<Movie favouriteMovies={favourites !== undefined ? favourites : []} handleFavouritesClick={addFavouriteMovie}/>}/>
+        <Route path='/:movieId' element={<Movie favouriteMovies={favourites} handleFavouritesClick={addFavouriteMovie}/>}/>
         <Route path='/*' element={<NotFound/>}/>
       </Routes>
       <GlobalStyle />

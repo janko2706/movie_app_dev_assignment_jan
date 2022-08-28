@@ -13,16 +13,18 @@ import { Movie } from '../../API';
 type Props = {
   movie: Movie,
   handleFavouritesClick: (movie: Movie) => void,
-  favouriteMovies: Movie[],
+  AllFavouriteMovies: Movie[],
 
 }
 
-const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, favouriteMovies }) => {
-
-  if(favouriteMovies.includes(movie)){
+const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, AllFavouriteMovies }) => {
+  console.log(AllFavouriteMovies);
+  if(AllFavouriteMovies.includes(movie)){
     movie.isFavourite = true;
+    console.log(true);
   }else{
     movie.isFavourite = false;
+    console.log(true);
   }
   return(
     <Wrapper backdrop={movie.backdrop_path}>
