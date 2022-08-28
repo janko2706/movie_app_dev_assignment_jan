@@ -19,17 +19,18 @@ type Props = {
 
 const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, AllFavouriteMovies }) => {
   console.log(AllFavouriteMovies);
+  let movieIsFavourite: boolean;
   if(AllFavouriteMovies.includes(movie)){
-    movie.isFavourite = true;
+    movieIsFavourite = true;
     console.log(true);
   }else{
-    movie.isFavourite = false;
+    movieIsFavourite = false;
     console.log(true);
   }
   return(
     <Wrapper backdrop={movie.backdrop_path}>
       <button className="manageFavorites" onClick={() => handleFavouritesClick(movie)}>
-        {movie.isFavourite ? 
+        {movieIsFavourite ? 
           <i className='bi bi-heart-fill' style={{color: 'red'}} ></i> 
         : 
           <i className='bi bi-heart' style={{color: 'white'}}></i>
@@ -43,7 +44,7 @@ const MovieInfo: React.FC<Props> = ({ movie, handleFavouritesClick, AllFavourite
             : NoImage
           }
           clickable={false}
-          isFavourite={movie.isFavourite}
+          isFavourite={movieIsFavourite}
           handleFavouritesClick={() => handleFavouritesClick(movie)}
 
         />
