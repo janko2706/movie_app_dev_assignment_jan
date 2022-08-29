@@ -9,11 +9,10 @@ https://main--super-cat-f92265.netlify.app/
 http://www.omdbapi.com/
 
 ## Documentation guidelines for running the project locally
-### 1
-#### download and extract the code
+### 1 #### Download and extract the code
 
-### 2
-#### run the following in the code directory
+
+### 2 #### Run the following command in the code directory
 ```sh
 docker-compose up
 ```
