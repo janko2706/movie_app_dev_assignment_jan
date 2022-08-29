@@ -2,7 +2,7 @@
 // Read more about the API here: https://developers.themoviedb.org/
 
 const API_URL: string = 'https://api.themoviedb.org/3/';
-const API_KEY: string | undefined = 'c83741e406c3397f4b02cd6a58e28771';
+const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
 let date: Date = new Date();
 let year = date.getFullYear().toString();
 let monthNumber = date.getMonth() + 1;
